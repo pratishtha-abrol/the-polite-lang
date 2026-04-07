@@ -1,6 +1,0 @@
-please
-  let greeting = "Hello"
-  let target = "world"
-  print greeting
-  print target
-thank you

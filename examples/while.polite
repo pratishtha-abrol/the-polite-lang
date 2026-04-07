@@ -1,0 +1,7 @@
+please
+  let i = 0
+  kindly while i < 3
+    print i
+    let i = i + 1
+  end while
+thank you

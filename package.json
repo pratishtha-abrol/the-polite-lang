@@ -2,7 +2,7 @@
   "name": "the-polite-lang",
   "version": "0.1.0",
   "type": "module",
-  "bin": { "polite": "./interpreter/index.js" },
+  "bin": { "tpl": "./cmd/main.js" },
   "scripts": {
     "test": "node polite.test.js"
   }

@@ -1,4 +1,6 @@
 please
-  let x = 42
-  print x
+  let greeting = "Hello"
+  let target = "world"
+  print greeting
+  print target
 thank you

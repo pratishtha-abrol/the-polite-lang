@@ -5,10 +5,30 @@ export const TokenType = {
   THANK_YOU: 'THANK_YOU',
   PRINT: 'PRINT',
   LET: 'LET',
+  KINDLY: 'KINDLY',
+  IF: 'IF',
+  OTHERWISE: 'OTHERWISE',
+  END: 'END',
+  WHILE: 'WHILE',
+  FOR: 'FOR',
+  FROM: 'FROM',
+  TO: 'TO',
+  STEP: 'STEP',
   IDENTIFIER: 'IDENTIFIER',
   STRING: 'STRING',
   NUMBER: 'NUMBER',
   EQUAL: 'EQUAL',
+  PLUS: 'PLUS',
+  MINUS: 'MINUS',
+  STAR: 'STAR',
+  SLASH: 'SLASH',
+  PERCENT: 'PERCENT',
+  LESS: 'LESS',
+  GREATER: 'GREATER',
+  LESS_EQUAL: 'LESS_EQUAL',
+  GREATER_EQUAL: 'GREATER_EQUAL',
+  EQUAL_EQUAL: 'EQUAL_EQUAL',
+  NOT_EQUAL: 'NOT_EQUAL',
   EOF: 'EOF',
 };
 
@@ -66,6 +86,24 @@ class Lexer {
         return { type: TokenType.PRINT, lexeme: text };
       case 'let':
         return { type: TokenType.LET, lexeme: text };
+      case 'kindly':
+        return { type: TokenType.KINDLY, lexeme: text };
+      case 'if':
+        return { type: TokenType.IF, lexeme: text };
+      case 'otherwise':
+        return { type: TokenType.OTHERWISE, lexeme: text };
+      case 'end':
+        return { type: TokenType.END, lexeme: text };
+      case 'while':
+        return { type: TokenType.WHILE, lexeme: text };
+      case 'for':
+        return { type: TokenType.FOR, lexeme: text };
+      case 'from':
+        return { type: TokenType.FROM, lexeme: text };
+      case 'to':
+        return { type: TokenType.TO, lexeme: text };
+      case 'step':
+        return { type: TokenType.STEP, lexeme: text };
       default:
         return { type: TokenType.IDENTIFIER, lexeme: text };
     }
@@ -114,8 +152,38 @@ class Lexer {
       return this.string();
     }
     if (c === '=') {
+      if (!this.isAtEnd() && this.peek() === '=') {
+        this.advance();
+        return { type: TokenType.EQUAL_EQUAL, lexeme: '==' };
+      }
       return { type: TokenType.EQUAL, lexeme: '=' };
     }
+    if (c === '!') {
+      if (!this.isAtEnd() && this.peek() === '=') {
+        this.advance();
+        return { type: TokenType.NOT_EQUAL, lexeme: '!=' };
+      }
+      throw new Error('Unexpected character: !');
+    }
+    if (c === '<') {
+      if (!this.isAtEnd() && this.peek() === '=') {
+        this.advance();
+        return { type: TokenType.LESS_EQUAL, lexeme: '<=' };
+      }
+      return { type: TokenType.LESS, lexeme: '<' };
+    }
+    if (c === '>') {
+      if (!this.isAtEnd() && this.peek() === '=') {
+        this.advance();
+        return { type: TokenType.GREATER_EQUAL, lexeme: '>=' };
+      }
+      return { type: TokenType.GREATER, lexeme: '>' };
+    }
+    if (c === '+') return { type: TokenType.PLUS, lexeme: '+' };
+    if (c === '-') return { type: TokenType.MINUS, lexeme: '-' };
+    if (c === '*') return { type: TokenType.STAR, lexeme: '*' };
+    if (c === '/') return { type: TokenType.SLASH, lexeme: '/' };
+    if (c === '%') return { type: TokenType.PERCENT, lexeme: '%' };
 
     throw new Error(`Unexpected character: ${c}`);
   }

@@ -1,0 +1,8 @@
+please
+  let x = 2
+  kindly if x == 2
+    print "x is two"
+  otherwise
+    print "x is not two"
+  end if
+thank you
