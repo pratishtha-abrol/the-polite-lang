@@ -1,0 +1,9 @@
+{
+  "name": "the-polite-lang",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": { "polite": "./polite.js" },
+  "scripts": {
+    "test": "node polite.test.js"
+  }
+}
